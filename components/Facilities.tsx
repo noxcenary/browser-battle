@@ -17,40 +17,46 @@ const facilities = [
 
 export default function Facilities() {
   return (
-    <section className="py-24 bg-navy-deep relative overflow-hidden border-t border-white/5">
-      <div className="max-w-[1440px] mx-auto px-8 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+    <section className="py-24 bg-white relative overflow-hidden border-t border-navy-deep/5">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8"
+        >
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-[1px] bg-gold" />
-              <span className="font-gothic text-[11px] text-gold uppercase tracking-[0.4em] font-bold">Campus Life</span>
+              <div className="w-8 h-[2px] bg-gold" />
+              <span className="font-sans text-[11px] text-navy-deep/50 uppercase tracking-[0.4em] font-bold">Campus Life</span>
             </div>
-            <h2 className="font-serif text-5xl font-black text-cream leading-tight">
-              World-Class <span className="text-gold italic">Facilities</span>
+            <h2 className="font-sans text-4xl lg:text-5xl font-black text-navy-deep leading-tight">
+              World-Class <span className="text-gold italic drop-shadow-sm">Facilities</span>
             </h2>
           </div>
-          <button className="flex items-center space-x-3 text-gold font-gothic text-[11px] uppercase tracking-[0.3em] font-black hover:text-cream transition-all group border-b border-gold/30 pb-2">
+          <button className="flex items-center space-x-3 text-gold font-sans text-[11px] uppercase tracking-[0.2em] font-black hover:text-navy-deep transition-all group border-b border-gold/30 pb-2">
             <span>Life at BMSCE</span>
             <ArrowUpRight size={16} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
           </button>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 border border-white/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {facilities.map((fac, idx) => (
             <motion.div
               key={fac.name}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              className="bg-navy-deep p-10 group cursor-pointer hover:bg-navy transition-all duration-500"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: idx * 0.1, duration: 0.5, type: "spring" }}
+              className="bg-[#F4F6F9] rounded-3xl p-8 group cursor-pointer hover:bg-white transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10 border border-navy-deep/5"
             >
-              <div className="w-14 h-14 rounded-sm bg-white/5 border border-white/5 flex items-center justify-center mb-8 group-hover:bg-gold group-hover:text-navy-deep transition-all duration-500">
-                <fac.icon size={28} className="text-gold group-hover:text-navy-deep transition-colors duration-500" />
+              <div className="w-14 h-14 rounded-xl bg-white border border-navy-deep/5 shadow-sm flex items-center justify-center mb-6 group-hover:bg-gold transition-colors duration-500">
+                <fac.icon size={24} className="text-navy-deep group-hover:text-white transition-colors duration-500" />
               </div>
-              <h3 className="font-serif text-xl font-bold text-cream mb-4 leading-tight group-hover:text-gold transition-colors">{fac.name}</h3>
-              <p className="text-cream/40 font-gothic text-xs leading-relaxed uppercase tracking-widest font-semibold mb-8">{fac.desc}</p>
-              <div className="flex items-center space-x-3 text-gold font-gothic text-[10px] uppercase tracking-[0.3em] font-black opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+              <h3 className="font-sans text-xl font-black text-navy-deep mb-3 leading-tight group-hover:text-gold transition-colors">{fac.name}</h3>
+              <p className="text-navy-deep/60 font-sans text-xs leading-relaxed uppercase tracking-widest font-bold mb-6">{fac.desc}</p>
+              <div className="flex items-center space-x-3 text-gold font-sans text-[10px] uppercase tracking-[0.2em] font-black opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
                 <span>Explore Facility</span>
                 <ArrowUpRight size={14} />
               </div>

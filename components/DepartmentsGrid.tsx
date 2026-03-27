@@ -21,77 +21,80 @@ const departments = [
 
 export default function Departments() {
   return (
-    <section className="py-24 bg-cream relative overflow-hidden border-t border-navy/5">
-      <div className="max-w-[1440px] mx-auto px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+    <section className="py-24 bg-white relative overflow-hidden border-t border-navy-deep/5">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8"
+        >
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-[1px] bg-gold" />
-              <span className="font-gothic text-[11px] text-gold uppercase tracking-[0.4em] font-bold">Academic Portfolio</span>
+              <div className="w-8 h-[2px] bg-gold" />
+              <span className="font-sans text-[11px] text-navy-deep/50 uppercase tracking-[0.4em] font-bold">Academic Portfolio</span>
             </div>
-            <h2 className="font-serif text-5xl font-black text-navy-deep leading-tight">
-              Schools & <span className="text-gold italic">Departments</span>
+            <h2 className="font-sans text-4xl lg:text-5xl font-black text-navy-deep leading-tight">
+              Schools & <span className="text-gold italic drop-shadow-sm">Departments</span>
             </h2>
           </div>
-          <p className="max-w-md text-navy/40 font-gothic text-sm leading-relaxed border-l border-gold/30 pl-6">
+          <p className="max-w-md text-navy-deep/60 font-sans text-sm leading-relaxed border-l-2 border-gold/30 pl-6 font-medium">
             Offering a comprehensive range of 13 undergraduate and 16 postgraduate programs across conventional and emerging engineering disciplines.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-navy/10 border border-navy/10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {departments.map((dept, idx) => (
             <motion.div
               key={dept.code}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              className="group bg-cream p-10 relative overflow-hidden transition-all duration-500 hover:bg-cream-dark cursor-pointer"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: idx * 0.05, duration: 0.5 }}
+              className="group bg-[#F8FAFC] p-8 rounded-3xl relative overflow-hidden transition-all duration-500 hover:bg-white cursor-pointer hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10 border border-navy-deep/5"
             >
-              <div className="relative z-10 flex flex-col h-full justify-between space-y-10">
+              <div className="relative z-10 flex flex-col h-full justify-between space-y-8">
                 <div className="flex justify-between items-start">
-                  <div className="w-16 h-16 rounded-sm bg-navy/5 border border-navy/5 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-all duration-500 shadow-sm group-hover:shadow-xl group-hover:shadow-gold/20">
-                    <dept.icon size={32} className="text-gold group-hover:text-cream transition-colors duration-500" />
+                  <div className="w-14 h-14 rounded-xl bg-white border border-navy-deep/5 shadow-sm flex items-center justify-center group-hover:bg-gold transition-colors duration-500">
+                    <dept.icon size={24} className="text-navy-deep group-hover:text-white transition-colors duration-500" />
                   </div>
-                  <ArrowRight size={24} className="text-gold opacity-0 group-hover:opacity-100 transition-all -translate-x-6 group-hover:translate-x-0" />
+                  <ArrowRight size={20} className="text-gold opacity-0 group-hover:opacity-100 transition-all -translate-x-4 group-hover:translate-x-0" />
                 </div>
 
                 <div>
-                  <div className="font-gothic text-[10px] text-gold uppercase tracking-[0.4em] font-bold mb-3">{dept.code}</div>
-                  <h3 className="font-serif text-2xl font-bold text-navy-deep group-hover:text-gold transition-colors duration-500 leading-tight">
+                  <div className="font-sans text-[10px] text-navy-deep/40 uppercase tracking-[0.3em] font-bold mb-2">{dept.code}</div>
+                  <h3 className="font-sans text-xl font-black text-navy-deep group-hover:text-gold transition-colors duration-500 leading-tight">
                     {dept.name}
                   </h3>
                 </div>
 
-                <div className="flex justify-between items-end pt-8 border-t border-navy/5 group-hover:border-gold/30 transition-colors">
+                <div className="flex justify-between items-end pt-6 border-t border-navy-deep/5 group-hover:border-gold/30 transition-colors">
                   <div className="flex flex-col">
-                    <span className="text-[10px] font-gothic uppercase tracking-widest text-navy/30 group-hover:text-navy/50 transition-colors mb-2">Programs</span>
-                    <span className="text-[12px] font-bold text-navy/60 group-hover:text-navy transition-colors">{dept.programs}</span>
+                    <span className="text-[9px] font-sans uppercase tracking-[0.2em] text-navy-deep/30 group-hover:text-navy-deep/50 transition-colors mb-1 font-bold">Programs</span>
+                    <span className="text-[11px] font-bold text-navy-deep/60 group-hover:text-navy-deep transition-colors tracking-wide">{dept.programs}</span>
                   </div>
-                  <span className="font-gothic text-[10px] text-gold/30 group-hover:text-gold/60 transition-colors font-bold">EST. {dept.est}</span>
+                  <span className="font-sans text-[9px] text-navy-deep/30 group-hover:text-gold/80 transition-colors font-bold tracking-[0.2em]">EST. {dept.est}</span>
                 </div>
               </div>
-              
-              {/* Subtle Background Accent */}
-              <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-gold/5 rounded-full blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             </motion.div>
           ))}
 
-          {/* More Departments Card - Refined */}
+          {/* More Departments Card */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.6 }}
-            className="group bg-cream p-10 flex flex-col items-center justify-center text-center space-y-6 hover:bg-gold/5 transition-all duration-500 cursor-pointer relative overflow-hidden"
+            transition={{ delay: 0.6, duration: 0.5 }}
+            className="group glass-card bg-white/50 p-8 rounded-3xl flex flex-col items-center justify-center text-center space-y-6 hover:bg-gold/5 transition-all duration-500 cursor-pointer relative overflow-hidden shadow-sm"
           >
             <div className="absolute top-0 left-0 w-full h-1 bg-gold/20 group-hover:bg-gold transition-colors" />
-            <div className="font-serif text-6xl font-black text-gold/20 group-hover:text-gold transition-colors duration-500">+8</div>
+            <div className="font-sans text-6xl font-black text-navy-deep/10 group-hover:text-gold transition-colors duration-500">+8</div>
             <div>
-              <div className="font-serif font-bold text-navy-deep text-lg mb-1">More Departments</div>
-              <div className="text-[10px] font-gothic uppercase tracking-[0.2em] text-navy/30 font-bold">Science & Humanities</div>
+              <div className="font-sans font-black text-navy-deep text-lg mb-1">More Departments</div>
+              <div className="text-[10px] font-sans uppercase tracking-[0.2em] text-navy-deep/40 font-bold">Science & Humanities</div>
             </div>
-            <div className="flex items-center space-x-3 text-gold font-gothic text-[11px] uppercase tracking-[0.3em] font-black group-hover:translate-x-2 transition-transform">
+            <div className="flex items-center space-x-3 text-gold font-sans text-[11px] uppercase tracking-[0.3em] font-black group-hover:translate-x-2 transition-transform">
               <span>View All</span>
               <ArrowRight size={16} />
             </div>

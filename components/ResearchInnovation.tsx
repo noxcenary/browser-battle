@@ -22,92 +22,108 @@ const labs = [
 
 export default function Research() {
   return (
-    <section className="py-24 bg-navy-deep relative overflow-hidden border-t border-white/5">
-      <div className="max-w-[1440px] mx-auto px-8 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+    <section className="py-24 bg-white relative overflow-hidden border-t border-navy-deep/5">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8"
+        >
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-[1px] bg-gold" />
-              <span className="font-gothic text-[11px] text-gold uppercase tracking-[0.4em] font-bold">R&D & Innovation</span>
+              <div className="w-8 h-[2px] bg-gold" />
+              <span className="font-sans text-[11px] text-navy-deep/50 uppercase tracking-[0.4em] font-bold">R&D & Innovation</span>
             </div>
-            <h2 className="font-serif text-5xl font-black text-cream leading-tight">
-              Advancing <span className="text-gold italic">Global Knowledge</span>
+            <h2 className="font-sans text-4xl lg:text-5xl font-black text-navy-deep leading-tight">
+              Advancing <span className="text-gold italic drop-shadow-sm">Global Knowledge</span>
             </h2>
           </div>
-          <button className="flex items-center space-x-3 text-gold font-gothic text-[11px] uppercase tracking-[0.3em] font-black hover:text-cream transition-all group border-b border-gold/30 pb-2">
+          <button className="flex items-center space-x-3 text-gold font-sans text-[11px] uppercase tracking-[0.2em] font-black hover:text-navy-deep transition-all group border-b border-gold/30 pb-2">
             <span>Explore Research Repository</span>
-            <ArrowUpRight size={18} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
+            <ArrowUpRight size={16} className="group-hover:-translate-y-1 group-hover:translate-x-1 transition-transform" />
           </button>
-        </div>
+        </motion.div>
 
-        {/* Stats Cells - More defined */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 border border-white/10 mb-20">
+        {/* Stats Cells */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {stats.map((stat, idx) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-navy-deep p-12 text-center group hover:bg-navy transition-colors duration-500"
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: idx * 0.1, duration: 0.5, type: "spring" }}
+              className="bg-[#F8FAFC] p-10 rounded-3xl text-center group hover:bg-white hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10 hover:border-gold/30 transition-all duration-500 border border-navy-deep/5"
             >
-              <div className="font-serif text-5xl font-black text-cream mb-4 group-hover:scale-110 transition-transform duration-500">{stat.value}</div>
-              <div className="font-gothic text-gold/60 text-[10px] uppercase tracking-[0.3em] font-bold">{stat.label}</div>
+              <div className="font-sans text-5xl font-black text-navy-deep mb-3 group-hover:text-gold transition-colors duration-500">{stat.value}</div>
+              <div className="font-sans text-navy-deep/60 text-[10px] uppercase tracking-[0.2em] font-bold">{stat.label}</div>
             </motion.div>
           ))}
         </div>
 
-        {/* Lab Cards - More defined */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10 border border-white/10 mb-20">
+        {/* Lab Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-20">
           {labs.map((lab, idx) => (
             <motion.div
               key={lab.name}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.05 }}
-              className="bg-navy-deep p-10 group hover:bg-navy transition-all duration-500 cursor-pointer relative overflow-hidden"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: idx * 0.05, duration: 0.5 }}
+              className="bg-[#F4F6F9] p-8 rounded-3xl group hover:bg-white transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10 cursor-pointer border border-navy-deep/5"
             >
-              <div className="flex justify-between items-start mb-10">
-                <div className="w-14 h-14 rounded-sm bg-white/5 border border-white/5 flex items-center justify-center group-hover:bg-gold group-hover:border-gold transition-all duration-500">
-                  <lab.icon size={28} className="text-gold group-hover:text-navy-deep transition-colors duration-500" />
+              <div className="flex justify-between items-start mb-8">
+                <div className="w-14 h-14 rounded-xl bg-white shadow-sm border border-navy-deep/5 flex items-center justify-center group-hover:bg-gold transition-colors duration-500">
+                  <lab.icon size={24} className="text-navy-deep group-hover:text-white transition-colors duration-500" />
                 </div>
-                <span className="font-gothic text-[9px] text-gold/40 uppercase tracking-[0.3em] font-bold border border-gold/20 px-3 py-1 rounded-full group-hover:border-gold group-hover:text-gold transition-colors">{lab.tag}</span>
+                <span className="font-sans text-[9px] text-navy-deep/50 uppercase tracking-[0.2em] font-bold border border-navy-deep/10 px-3 py-1.5 rounded-full group-hover:border-gold group-hover:text-gold transition-colors bg-white/50">{lab.tag}</span>
               </div>
-              <h3 className="font-serif text-2xl font-bold text-cream mb-4 leading-tight group-hover:text-gold transition-colors">{lab.name}</h3>
-              <p className="text-cream/40 font-gothic text-xs leading-relaxed mb-10 uppercase tracking-widest font-semibold">{lab.desc}</p>
-              <div className="flex items-center space-x-3 text-gold font-gothic font-black text-[10px] uppercase tracking-[0.3em] opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-2">
+              <h3 className="font-sans text-xl font-black text-navy-deep mb-3 leading-tight group-hover:text-gold transition-colors">{lab.name}</h3>
+              <p className="text-navy-deep/60 font-sans text-[11px] leading-relaxed mb-8 font-bold">{lab.desc}</p>
+              <div className="flex items-center space-x-3 text-gold font-sans font-black text-[10px] uppercase tracking-[0.2em] opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-2">
                 <span>Case Study</span>
-                <ArrowUpRight size={16} />
+                <ArrowUpRight size={14} />
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* CIIE Banner - Refined */}
-        <div className="bg-navy border border-gold/20 p-12 lg:p-20 flex flex-col lg:flex-row items-center justify-between gap-12 relative overflow-hidden group">
-          <div className="absolute top-0 left-0 w-1 h-full bg-gold" />
-          <div className="absolute -right-20 top-1/2 -translate-y-1/2 font-serif text-[15rem] font-black text-white/5 select-none pointer-events-none group-hover:scale-110 transition-transform duration-1000">
+        {/* CIIE Banner */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-[#F8FAFC] rounded-3xl border border-navy-deep/5 p-10 lg:p-16 flex flex-col lg:flex-row items-center justify-between gap-12 relative overflow-hidden group shadow-sm"
+        >
+          <div className="absolute top-0 left-0 w-2 h-full bg-gold" />
+          <div className="absolute -right-10 top-1/2 -translate-y-1/2 font-sans text-[12rem] font-black text-navy-deep/5 select-none pointer-events-none group-hover:scale-105 transition-transform duration-1000">
             CIIE
           </div>
-          <div className="space-y-6 max-w-3xl relative z-10">
+          <div className="space-y-5 max-w-3xl relative z-10">
             <div className="flex items-center space-x-3">
-              <div className="w-6 h-6 rounded-full border border-gold flex items-center justify-center">
+              <div className="w-6 h-6 rounded-full border border-gold flex items-center justify-center bg-white shadow-sm">
                 <div className="w-2 h-2 bg-gold rounded-full animate-pulse" />
               </div>
-              <span className="font-gothic text-[11px] text-gold uppercase tracking-[0.4em] font-black">Entrepreneurship Wing</span>
+              <span className="font-sans text-[11px] text-gold uppercase tracking-[0.3em] font-black drop-shadow-sm">Entrepreneurship Wing</span>
             </div>
-            <h3 className="font-serif text-4xl font-bold text-cream leading-tight">Centre for Innovation, Incubation & Entrepreneurship</h3>
-            <p className="text-cream/50 font-gothic text-sm leading-relaxed max-w-2xl">
+            <h3 className="font-sans text-3xl font-black text-navy-deep leading-tight">Centre for Innovation, Incubation & Entrepreneurship</h3>
+            <p className="text-navy-deep/60 font-sans text-sm leading-relaxed max-w-2xl font-medium">
               A premier ecosystem empowering the next generation of entrepreneurs with world-class mentorship, state-of-the-art infrastructure, and strategic funding to transform groundbreaking ideas into market-leading ventures.
             </p>
           </div>
-          <div className="relative z-10">
-            <button className="bg-gold text-navy-deep px-12 py-5 font-gothic text-[11px] uppercase tracking-[0.3em] font-black hover:bg-cream transition-all duration-500 shadow-2xl shadow-gold/10">
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative z-10 shrink-0"
+          >
+            <button className="bg-navy-deep text-white px-10 py-5 rounded-xl font-sans text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-gold hover:text-navy-deep hover:shadow-lg transition-colors duration-300">
               Explore CIIE Ecosystem
             </button>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );

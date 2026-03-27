@@ -9,11 +9,12 @@ import ResearchInnovation from "@/components/ResearchInnovation";
 import Visionaries from "@/components/Visionaries";
 import Facilities from "@/components/Facilities";
 import Gallery from "@/components/Gallery";
+import Testimonials from "@/components/Testimonials";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-cream selection:bg-gold selection:text-navy">
+    <main className="min-h-screen bg-white selection:bg-gold selection:text-navy-deep overflow-x-hidden">
       <Navbar />
       <Hero />
       <NewsSection />
@@ -25,6 +26,7 @@ export default function Home() {
       <Visionaries />
       <Facilities />
       <Gallery />
+      <Testimonials />
       <Footer />
     </main>
   );

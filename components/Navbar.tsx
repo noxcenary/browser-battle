@@ -8,78 +8,65 @@ import Image from "next/image";
 
 const navItems = [
   {
-    label: "About Us",
+    label: "Discover Us",
     href: "/about",
     links: [
       { label: "About BMSCE", href: "/about" },
       { label: "Governing Body", href: "/about#governing" },
-      { label: "Administration", href: "/about#admin" },
-      { label: "Life at BMSCE", href: "/campus-life" },
-      { label: "Group Institutions", href: "/about#group" },
-      { label: "IQAC", href: "/about#iqac" },
-      { label: "IIIC", href: "/about#iiic" },
-    ],
+      { label: "Administration", href: "/about#admin" }
+    ]
   },
   {
-    label: "Academics",
+    label: "Explore Courses",
     href: "/academics",
     links: [
       { label: "Civil Engineering", href: "/departments/civil" },
       { label: "Computer Science", href: "/departments/cse" },
-      { label: "Electronics & Communication", href: "/departments/ece" },
+      { label: "Electronics & Comm.", href: "/departments/ece" },
       { label: "Mechanical Engineering", href: "/departments/mech" },
-      { label: "AI & Machine Learning", href: "/departments/aiml" },
-      { label: "Aerospace Engineering", href: "/departments/aero" },
-      { label: "Bio-Technology", href: "/departments/biotech" },
-      { label: "All Departments →", href: "/academics" },
-    ],
+      { label: "All Departments →", href: "/academics" }
+    ]
   },
   {
-    label: "Admissions",
+    label: "Join Now",
     href: "/admissions",
     links: [
       { label: "Under Graduation", href: "/admissions/ug" },
       { label: "Post Graduation", href: "/admissions/pg" },
       { label: "Ph.D Research", href: "/admissions/phd" },
-      { label: "International Admissions", href: "/admissions/intl" },
-    ],
+      { label: "International", href: "/admissions/intl" }
+    ]
   },
   {
-    label: "Research",
-    href: "/research",
+    label: "Experience Life",
+    href: "/campus-life",
     links: [
-      { label: "About R&D", href: "/research" },
-      { label: "Research Centers", href: "/research#centers" },
-      { label: "Innovative Labs", href: "/research#labs" },
-      { label: "Funded Projects", href: "/research#projects" },
-      { label: "Journal Publications", href: "/research#publications" },
-      { label: "Patents Filed", href: "/research#patents" },
-    ],
-  },
-  {
-    label: "Placements",
-    href: "/placements",
-    links: [
-      { label: "About Placements", href: "/placements" },
-      { label: "Placement Training", href: "/placements#training" },
-      { label: "Achievements", href: "/placements#achievements" },
-      { label: "Recruiting Companies", href: "/placements#companies" },
-      { label: "Statistics", href: "/placements#stats" },
-    ],
+      { label: "Campus Facilities", href: "/campus-life#facilities" },
+      { label: "Student Activities", href: "/campus-life#activities" }
+    ]
   },
   {
     label: "More",
     href: "#",
     links: [
-      { label: "Innovation & CIIE", href: "/research#innovation" },
-      { label: "Facilities", href: "/campus-life#facilities" },
-      { label: "COE Office", href: "/about#coe" },
-      { label: "Documents & NAAC", href: "/about#naac" },
-      { label: "Student Activities", href: "/campus-life#activities" },
-      { label: "Gallery", href: "/campus-life#gallery" },
-    ],
-  },
+      { label: "Gallery", href: "/gallery" },
+      { label: "Virtual Tour", href: "/virtual-tour" }
+    ]
+  }
 ];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 }
+  }
+};
+
+const itemVariants: any = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+};
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -95,106 +82,123 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 h-16 transition-all duration-500 ${
+    <motion.nav
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] as const }}
+      className={`fixed top-0 left-0 right-0 z-50 h-[80px] transition-all duration-500 ${
         isScrolled
-          ? "bg-navy-deep/80 backdrop-blur-md border-b border-white/5 shadow-lg"
+          ? "bg-white/80 backdrop-blur-xl border-b border-navy-deep/5 shadow-sm"
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-[1440px] mx-auto px-10 h-full flex items-center">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 h-full flex items-center">
         {/* Logo - Left Aligned */}
         <div className="flex-1 flex justify-start">
-          <Link href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex items-center space-x-3 group relative">
+            <div className="absolute inset-0 bg-white/40 blur-xl rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             <Image
               src="/bmsce_logo.png"
               alt="BMSCE Logo"
-              width={56}
-              height={56}
-              className="bg-cream rounded-full p-[2px] transition-transform duration-500 group-hover:scale-105"
+              width={64}
+              height={64}
+              className="relative p-[2px] transition-transform duration-500 group-hover:scale-105 drop-shadow-lg"
             />
           </Link>
         </div>
 
         {/* Desktop Nav - Perfectly Centered */}
-        <div className="hidden lg:flex items-center justify-center space-x-10">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="hidden lg:flex items-center justify-center space-x-8"
+        >
           {navItems.map((item) => (
-            <div
+            <motion.div
+              variants={itemVariants}
               key={item.label}
-              className="relative h-16 flex items-center"
+              className="relative h-[80px] flex items-center group"
               onMouseEnter={() => setActiveDropdown(item.label)}
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <Link
                 href={item.href}
-                className="flex items-center space-x-1 font-sans text-[11px] font-medium text-cream/70 hover:text-cream transition-all duration-500 uppercase tracking-[0.2em]"
+                className="flex items-center space-x-1 font-sans text-[11px] font-bold text-navy-deep uppercase tracking-[0.15em] relative py-2"
               >
                 <span>{item.label}</span>
-                <ChevronDown
-                  size={10}
-                  className={`transition-transform duration-500 opacity-40 ${activeDropdown === item.label ? "rotate-180 opacity-100" : ""}`}
-                />
+                {item.links && (
+                  <ChevronDown
+                    size={12}
+                    className={`transition-transform duration-500 text-gold ${activeDropdown === item.label ? "rotate-180" : ""}`}
+                  />
+                )}
+                {/* Hover Underline Animation */}
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gold scale-x-0 origin-left transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
               </Link>
 
-              <AnimatePresence>
-                {activeDropdown === item.label && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 5 }}
-                    transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-navy-deep/95 backdrop-blur-2xl border border-white/10 py-4 z-50 shadow-2xl"
-                  >
-                    <div className="space-y-1">
-                      {item.links.map((link) => (
-                        <Link
-                          key={link.label}
-                          href={link.href}
-                          className="block px-8 py-2.5 text-[10px] font-sans text-cream/50 hover:text-cream hover:bg-white/5 transition-all duration-300"
-                        >
-                          {link.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
+              {item.links && (
+                <AnimatePresence>
+                  {activeDropdown === item.label && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: 5, scale: 0.95 }}
+                      transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] as const }}
+                      className="absolute top-full left-1/2 -translate-x-1/2 w-64 bg-white/90 backdrop-blur-2xl border border-navy-deep/5 py-4 z-50 shadow-2xl rounded-2xl overflow-hidden"
+                    >
+                      <div className="space-y-1">
+                        {item.links.map((link) => (
+                          <Link
+                            key={link.label}
+                            href={link.href}
+                            className="block px-8 py-3 text-[11px] font-sans font-bold text-navy-deep/70 hover:text-navy-deep hover:bg-navy-deep/5 transition-all duration-300"
+                          >
+                            {link.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              )}
+            </motion.div>
           ))}
-        </div>
+          
+          <motion.div variants={itemVariants} className="relative h-[80px] flex items-center group">
+             <Link
+                href="/contact"
+                className="flex items-center space-x-1 font-sans text-[11px] font-bold text-navy-deep uppercase tracking-[0.15em] relative py-2"
+              >
+                <span>Get in Touch</span>
+                <span className="absolute bottom-0 left-0 w-full h-[2px] bg-gold scale-x-0 origin-left transition-transform duration-300 ease-out group-hover:scale-x-100"></span>
+             </Link>
+          </motion.div>
+        </motion.div>
 
         {/* Right Action - Right Aligned */}
-        <div className="flex-1 hidden lg:flex items-center justify-end space-x-10">
-          <button className="text-cream/40 hover:text-gold transition-colors duration-500">
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
-          </button>
-          <Link
-            href="/admissions"
-            className="border border-white/20 text-cream px-6 py-2 font-sans text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-cream hover:text-navy-deep transition-all duration-500 rounded-full"
+        <div className="flex-1 hidden lg:flex items-center justify-end space-x-6">
+          <motion.button 
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 0.8 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="relative overflow-hidden bg-navy-deep text-white px-8 py-3 font-sans text-[11px] font-bold uppercase tracking-[0.2em] rounded-full shadow-lg hover:shadow-navy-deep/20 transition-all duration-300 group"
           >
-            Apply Now
-          </Link>
+            <span className="relative z-10 group-hover:text-gold transition-colors duration-300">Apply Now</span>
+            {/* Ripple effect trick using absolute scale */}
+            <div className="absolute inset-0 bg-white/10 origin-center scale-0 group-hover:scale-150 transition-transform duration-500 rounded-full blur-md"></div>
+          </motion.button>
         </div>
 
         {/* Mobile Toggle */}
         <div className="lg:hidden flex-1 flex justify-end">
           <button
-            className="text-cream"
+            className="text-navy-deep p-2 bg-white/50 backdrop-blur-md rounded-full shadow-sm"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </div>
@@ -206,23 +210,23 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-navy-deep border-b border-white/10 overflow-hidden"
+            className="lg:hidden bg-white/95 backdrop-blur-2xl border-b border-navy-deep/10 overflow-hidden shadow-2xl"
           >
-            <div className="px-10 py-10 space-y-8">
+            <div className="px-6 py-8 space-y-6">
               {navItems.map((item) => (
-                <div key={item.label} className="space-y-4">
+                <div key={item.label} className="space-y-3">
                   <Link
                     href={item.href}
-                    className="font-sans font-bold text-gold text-xs uppercase tracking-[0.3em]"
+                    className="font-sans font-black text-navy-deep text-[11px] uppercase tracking-[0.2em]"
                   >
                     {item.label}
                   </Link>
-                  <div className="grid grid-cols-1 gap-3">
+                  <div className="grid grid-cols-1 gap-2 pl-4 border-l-2 border-gold/30">
                     {item.links.map((link) => (
                       <Link
                         key={link.label}
                         href={link.href}
-                        className="text-[11px] font-sans text-cream/50 hover:text-cream transition-colors"
+                        className="text-[12px] font-sans font-medium text-navy-deep/60 hover:text-navy-deep transition-colors"
                       >
                         {link.label}
                       </Link>
@@ -232,7 +236,7 @@ export default function Navbar() {
               ))}
               <Link
                 href="/admissions"
-                className="block text-center w-full border border-white/20 text-cream rounded-full py-4 font-sans text-[10px] uppercase tracking-[0.2em] font-bold"
+                className="block text-center w-full bg-navy-deep text-white rounded-full py-4 font-sans text-[11px] uppercase tracking-[0.2em] font-bold shadow-lg mt-6"
               >
                 Apply Now
               </Link>
@@ -240,6 +244,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-    </nav>
+    </motion.nav>
   );
 }

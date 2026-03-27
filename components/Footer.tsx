@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram, Youtube, ArrowUpRight } from 'lucide-react';
 import Link from 'next/link';
 
@@ -11,7 +12,6 @@ const footerLinks = [
       { name: "UG Programs", href: "#" },
       { name: "PG Programs", href: "#" },
       { name: "Ph.D Programs", href: "#" },
-      { name: "Management Quota", href: "#" },
       { name: "Fee Structure", href: "#" }
     ]
   },
@@ -21,93 +21,86 @@ const footerLinks = [
       { name: "NIRF Data", href: "#" },
       { name: "NAAC SSR", href: "#" },
       { name: "Mandatory Disclosure", href: "#" },
-      { name: "IQAC", href: "#" },
-      { name: "RTI Cell", href: "#" }
+      { name: "IQAC", href: "#" }
     ]
   },
   {
     title: "Quick Links",
     links: [
       { name: "Student Portal", href: "#" },
-      { name: "Faculty Portal", href: "#" },
       { name: "Alumni Association", href: "#" },
       { name: "Careers", href: "#" },
-      { name: "Contact Us", href: "#" }
+      { name: "Contact Us", href: "/contact" }
     ]
   }
 ];
 
 export default function Footer() {
   return (
-    <footer className="bg-navy-deep pt-20 pb-10 text-cream border-t border-gold/10">
-      <div className="max-w-[1280px] mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 mb-20">
+    <footer className="bg-white pt-24 pb-12 text-navy-deep border-t border-navy-deep/5 overflow-hidden">
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-50px" }}
+        transition={{ duration: 0.8 }}
+        className="max-w-[1440px] mx-auto px-6 lg:px-10"
+      >
+        <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 mb-20">
           {/* Brand Block */}
           <div className="lg:col-span-2 space-y-8">
             <div className="flex items-center space-x-4">
-              <div className="w-16 h-16 rounded-full bg-navy border border-gold/30 flex items-center justify-center font-serif text-2xl font-black text-gold shadow-[0_0_20px_rgba(190,18,60,0.1)]">
+              <div className="w-16 h-16 rounded-full bg-navy-deep flex items-center justify-center font-serif text-2xl font-black text-white shadow-xl">
                 BMS
               </div>
               <div>
-                <h2 className="font-serif text-2xl font-bold leading-tight">B.M.S. College of <br />Engineering</h2>
-                <p className="font-gothic text-[10px] text-gold uppercase tracking-widest font-bold mt-1">Autonomous Institute · Est. 1946</p>
+                <h2 className="font-sans text-2xl font-black leading-tight text-navy-deep">B.M.S. College of <br />Engineering</h2>
+                <p className="font-sans text-[10px] text-navy-deep/50 uppercase tracking-[0.2em] font-bold mt-1">Autonomous Institute · Est. 1946</p>
               </div>
             </div>
             
-            <p className="text-cream/45 text-sm font-gothic leading-relaxed max-w-md">
-              India&apos;s first private sector initiative in engineering education. Consistently ranked among the top engineering colleges in the country, BMSCE is committed to excellence in academic and research pursuits.
+            <p className="text-navy-deep/60 text-sm font-sans leading-relaxed max-w-sm font-medium">
+              India's first private sector initiative in engineering education. Consistently ranked among the top engineering colleges globally, committed to excellence.
             </p>
 
-            <div className="space-y-4">
+            <div className="space-y-4 pt-4">
               <div className="flex items-center space-x-4 group cursor-pointer">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-gold transition-colors duration-300">
-                  <MapPin size={18} className="text-gold group-hover:text-navy-deep transition-colors duration-300" />
+                <div className="w-10 h-10 rounded-full bg-[#F4F6F9] flex items-center justify-center group-hover:bg-gold transition-colors duration-300">
+                  <MapPin size={16} className="text-navy-deep transition-colors duration-300" />
                 </div>
-                <span className="text-cream/60 text-xs font-gothic leading-tight group-hover:text-cream transition-colors">P.B. No. 1908, Bull Temple Road, <br />Bangalore - 560 019</span>
+                <span className="text-navy-deep/70 text-xs font-sans leading-tight group-hover:text-navy-deep font-bold transition-colors">P.B. No. 1908, Bull Temple Road, <br />Bangalore - 560 019</span>
               </div>
               <div className="flex items-center space-x-4 group cursor-pointer">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-gold transition-colors duration-300">
-                  <Phone size={18} className="text-gold group-hover:text-navy-deep transition-colors duration-300" />
+                <div className="w-10 h-10 rounded-full bg-[#F4F6F9] flex items-center justify-center group-hover:bg-gold transition-colors duration-300">
+                  <Phone size={16} className="text-navy-deep transition-colors duration-300" />
                 </div>
-                <span className="text-cream/60 text-xs font-gothic group-hover:text-cream transition-colors">+91-80-26622130-35</span>
-              </div>
-              <div className="flex items-center space-x-4 group cursor-pointer">
-                <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-gold transition-colors duration-300">
-                  <Mail size={18} className="text-gold group-hover:text-navy-deep transition-colors duration-300" />
-                </div>
-                <span className="text-cream/60 text-xs font-gothic group-hover:text-cream transition-colors">principal@bmsce.ac.in</span>
+                <span className="text-navy-deep/70 text-xs font-sans font-bold group-hover:text-navy-deep transition-colors">+91-80-26622130</span>
               </div>
             </div>
 
-            <div className="flex items-center space-x-5 pt-6">
-              <button className="bg-white/5 hover:bg-gold w-12 h-12 flex items-center justify-center rounded-sm transition-all duration-500 group shadow-lg hover:shadow-gold/20">
-                <Facebook size={20} className="text-gold group-hover:text-navy-deep transition-colors" />
-              </button>
-              <button className="bg-white/5 hover:bg-gold w-12 h-12 flex items-center justify-center rounded-sm transition-all duration-500 group shadow-lg hover:shadow-gold/20">
-                <Twitter size={20} className="text-gold group-hover:text-navy-deep transition-colors" />
-              </button>
-              <button className="bg-white/5 hover:bg-gold w-12 h-12 flex items-center justify-center rounded-sm transition-all duration-500 group shadow-lg hover:shadow-gold/20">
-                <Linkedin size={20} className="text-gold group-hover:text-navy-deep transition-colors" />
-              </button>
-              <button className="bg-white/5 hover:bg-gold w-12 h-12 flex items-center justify-center rounded-sm transition-all duration-500 group shadow-lg hover:shadow-gold/20">
-                <Instagram size={20} className="text-gold group-hover:text-navy-deep transition-colors" />
-              </button>
-              <button className="bg-white/5 hover:bg-gold w-12 h-12 flex items-center justify-center rounded-sm transition-all duration-500 group shadow-lg hover:shadow-gold/20">
-                <Youtube size={20} className="text-gold group-hover:text-navy-deep transition-colors" />
-              </button>
+            <div className="flex items-center space-x-4 pt-6">
+              {[Facebook, Twitter, Linkedin, Instagram, Youtube].map((Icon, idx) => (
+                 <motion.button 
+                   whileHover={{ scale: 1.1 }}
+                   whileTap={{ scale: 0.9 }}
+                   key={idx} 
+                   className="bg-[#F4F6F9] hover:bg-gold w-12 h-12 flex items-center justify-center rounded-full transition-colors duration-300 group shadow-sm"
+                 >
+                   <Icon size={18} className="text-navy-deep transition-colors" />
+                 </motion.button>
+              ))}
             </div>
           </div>
 
           {/* Link Columns */}
           {footerLinks.map((col) => (
             <div key={col.title} className="space-y-8">
-              <h3 className="font-gothic text-[11px] text-gold uppercase tracking-[0.2em] font-bold">{col.title}</h3>
+              <h3 className="font-sans text-[11px] text-navy-deep uppercase tracking-[0.3em] font-black">{col.title}</h3>
               <ul className="space-y-4">
                 {col.links.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="text-cream/45 text-sm font-gothic hover:text-gold transition-colors flex items-center group">
+                    <Link href={link.href} className="text-navy-deep/60 text-[13px] font-sans font-bold hover:text-gold transition-colors flex items-center group">
                       <span>{link.name}</span>
-                      <ArrowUpRight size={12} className="ml-1 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all" />
+                      <ArrowUpRight size={14} className="ml-1 opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all font-bold" />
                     </Link>
                   </li>
                 ))}
@@ -116,17 +109,16 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="pt-10 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="text-cream/30 text-[10px] font-gothic uppercase tracking-widest">
+        <div className="pt-10 border-t border-navy-deep/10 flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="text-navy-deep/40 text-[10px] font-sans font-bold uppercase tracking-widest">
             © 2026 B.M.S. College of Engineering. All Rights Reserved.
           </div>
-          <div className="flex items-center space-x-8 text-cream/30 text-[10px] font-gothic uppercase tracking-widest">
+          <div className="flex items-center space-x-8 text-navy-deep/40 text-[10px] font-sans uppercase font-bold tracking-widest">
             <Link href="#" className="hover:text-gold transition-colors">Privacy Policy</Link>
             <Link href="#" className="hover:text-gold transition-colors">Terms of Use</Link>
-            <Link href="#" className="hover:text-gold transition-colors">Sitemap</Link>
           </div>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 }

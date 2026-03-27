@@ -11,7 +11,7 @@ const programs = [
     duration: "4 Years",
     intake: "13 Programs",
     status: "Open for 2026–27",
-    statusColor: "text-green-400 bg-green-400/10",
+    statusColor: "text-green-600 bg-green-500/10 border-green-500/20",
     features: ["CET / COMEDK Admission", "Management Quota Available", "Hostel Facilities", "Scholarship Schemes"]
   },
   {
@@ -20,7 +20,7 @@ const programs = [
     duration: "2 Years",
     intake: "16 Programs",
     status: "Open for 2026–27",
-    statusColor: "text-green-400 bg-green-400/10",
+    statusColor: "text-green-600 bg-green-500/10 border-green-500/20",
     features: ["GATE / PGCET / KMAT", "Management Quota Available", "Research Opportunities", "Industry Collaborations"]
   },
   {
@@ -29,7 +29,7 @@ const programs = [
     duration: "3–5 Years",
     intake: "All Departments",
     status: "Rolling Admissions",
-    statusColor: "text-blue-400 bg-blue-400/10",
+    statusColor: "text-blue-600 bg-blue-500/10 border-blue-500/20",
     features: ["B.S. Narayan Fellowship", "Funded Research Projects", "20+ Research Centers", "VTU Affiliation"]
   },
   {
@@ -38,7 +38,7 @@ const programs = [
     duration: "Varies",
     intake: "All UG & PG",
     status: "Applications Open",
-    statusColor: "text-purple-400 bg-purple-400/10",
+    statusColor: "text-purple-600 bg-purple-500/10 border-purple-500/20",
     features: ["OCI / Foreign Passport", "UK / US / AU Scholarships", "Dedicated Support Cell", "Global Alumni Network"]
   }
 ];
@@ -52,98 +52,111 @@ const steps = [
 
 export default function Admissions() {
   return (
-    <section className="py-24 bg-navy-deep relative overflow-hidden border-t border-white/5">
-      <div className="max-w-[1440px] mx-auto px-8 relative z-10">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+    <section className="py-24 bg-[#F4F6F9] relative overflow-hidden border-t border-navy-deep/5">
+      <div className="max-w-[1440px] mx-auto px-6 lg:px-10 relative z-10">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8"
+        >
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
-              <div className="w-8 h-[1px] bg-gold" />
-              <span className="font-gothic text-[11px] text-gold uppercase tracking-[0.4em] font-bold">Enrollment 2026–27</span>
+              <div className="w-8 h-[2px] bg-gold" />
+              <span className="font-sans text-[11px] text-navy-deep/50 uppercase tracking-[0.4em] font-bold">Enrollment 2026–27</span>
             </div>
-            <h2 className="font-serif text-5xl font-black text-cream leading-tight">
-              Begin Your <span className="text-gold italic">Academic Journey</span>
+            <h2 className="font-sans text-4xl lg:text-5xl font-black text-navy-deep leading-tight">
+              Begin Your <span className="text-gold italic drop-shadow-sm">Academic Journey</span>
             </h2>
           </div>
-          <p className="max-w-md text-cream/40 font-gothic text-sm leading-relaxed border-l border-gold/30 pl-6">
+          <p className="max-w-md text-navy-deep/60 font-sans text-sm leading-relaxed border-l-2 border-gold/30 pl-6 font-medium">
             Applications for the academic year 2026–27 are now open. Explore our diverse range of undergraduate, postgraduate, and doctoral programs.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/10 border border-white/10 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {programs.map((prog, idx) => (
             <motion.div
               key={prog.level}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="bg-navy-deep p-10 flex flex-col group hover:bg-navy transition-all duration-500 relative overflow-hidden"
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ delay: idx * 0.1, duration: 0.5 }}
+              className="bg-white p-8 rounded-3xl flex flex-col group hover:-translate-y-2 hover:shadow-2xl hover:shadow-gold/10 transition-all duration-500 relative border border-navy-deep/5 overflow-hidden"
             >
-              <div className="absolute top-0 left-0 w-full h-1 bg-gold/10 group-hover:bg-gold transition-colors" />
+              <div className="absolute top-0 left-0 w-full h-1 bg-gold/20 group-hover:bg-gold transition-colors" />
               
-              <div className="space-y-8 mb-10">
+              <div className="space-y-8 mb-8">
                 <div className="flex justify-between items-start">
-                  <span className="font-serif text-5xl font-black text-cream group-hover:text-gold transition-colors">{prog.level}</span>
-                  <span className={`px-4 py-1.5 rounded-full text-[9px] font-gothic uppercase tracking-[0.2em] font-black border ${prog.statusColor.includes('green') ? 'border-green-400/30 text-green-400' : 'border-blue-400/30 text-blue-400'}`}>
+                  <span className="font-sans text-5xl font-black text-navy-deep group-hover:text-gold transition-colors">{prog.level}</span>
+                  <span className={`px-4 py-1.5 rounded-full text-[9px] font-sans uppercase tracking-[0.2em] font-black border ${prog.statusColor}`}>
                     {prog.status}
                   </span>
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl font-bold text-cream mb-3 leading-tight group-hover:text-gold transition-colors">{prog.title}</h3>
-                  <div className="flex items-center space-x-4 text-cream/30 font-gothic text-[10px] uppercase tracking-[0.2em] font-bold">
-                    <div className="flex items-center space-x-2">
-                      <Clock size={14} className="text-gold" />
+                  <h3 className="font-sans text-xl font-black text-navy-deep mb-2 leading-tight group-hover:text-gold transition-colors">{prog.title}</h3>
+                  <div className="flex items-center space-x-3 text-navy-deep/40 font-sans text-[10px] uppercase tracking-[0.2em] font-bold">
+                    <div className="flex items-center space-x-1.5">
+                      <Clock size={12} className="text-gold" />
                       <span>{prog.duration}</span>
                     </div>
-                    <div className="w-1 h-1 bg-gold/30 rounded-full" />
+                    <div className="w-1 h-1 bg-navy-deep/20 rounded-full" />
                     <span>{prog.intake}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="flex-1 space-y-5 mb-10">
+              <div className="flex-1 space-y-4 mb-10">
                 {prog.features.map((feat, i) => (
-                  <div key={i} className="flex items-start space-x-4">
+                  <div key={i} className="flex items-start space-x-3">
                     <CheckCircle size={16} className="text-gold mt-0.5 flex-shrink-0" />
-                    <span className="text-[12px] text-cream/50 font-gothic uppercase tracking-widest font-semibold leading-tight group-hover:text-cream/70 transition-colors">{feat}</span>
+                    <span className="text-[12px] text-navy-deep/60 font-sans font-medium leading-tight group-hover:text-navy-deep/80 transition-colors w-full">{feat}</span>
                   </div>
                 ))}
               </div>
 
-              <button className="w-full bg-gold text-navy-deep py-5 font-gothic text-[11px] uppercase tracking-[0.3em] font-black hover:bg-cream transition-all duration-500 shadow-2xl shadow-gold/10 flex items-center justify-center space-x-3">
+              <button className="w-full bg-navy-deep text-white py-4 rounded-xl font-sans text-[11px] uppercase tracking-[0.2em] font-bold hover:bg-gold hover:text-navy-deep transition-all duration-300 shadow-md flex items-center justify-center space-x-2">
                 <span>Apply Now</span>
-                <ArrowRight size={18} />
+                <ArrowRight size={16} />
               </button>
             </motion.div>
           ))}
         </div>
 
-        {/* Timeline Banner - Refined */}
-        <div className="bg-navy border border-gold/20 p-12 lg:p-20 relative overflow-hidden group">
-          <div className="absolute top-0 left-0 w-1 h-full bg-gold" />
+        {/* Timeline Banner */}
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-white rounded-3xl p-10 lg:p-16 relative overflow-hidden group shadow-sm border border-navy-deep/5"
+        >
+          <div className="absolute top-0 left-0 w-2 h-full bg-gold" />
           <div className="flex flex-col lg:flex-row items-center justify-between gap-16">
-            <div className="max-w-md space-y-4">
-              <h3 className="font-serif text-3xl font-bold text-cream">Admission Process</h3>
-              <p className="text-cream/40 font-gothic text-sm leading-relaxed">
+            <div className="max-w-md space-y-4 relative z-10">
+              <h3 className="font-sans text-3xl font-black text-navy-deep">Admission Process</h3>
+              <p className="text-navy-deep/60 font-sans text-sm leading-relaxed font-medium">
                 A streamlined, transparent four-step process designed to facilitate your transition into the BMSCE academic community.
               </p>
             </div>
             
-            <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-8 w-full relative">
+            <div className="flex-1 grid grid-cols-2 lg:grid-cols-4 gap-8 w-full relative z-10">
               {/* Progress Line */}
-              <div className="absolute top-8 left-0 w-full h-[1px] bg-gold/10 hidden lg:block" />
+              <div className="absolute top-8 left-0 w-full h-[2px] bg-navy-deep/5 hidden lg:block" />
               
-              {steps.map((step, idx) => (
+              {steps.map((step) => (
                 <div key={step.id} className="relative flex flex-col items-center text-center space-y-6 z-10">
-                  <div className="w-16 h-16 rounded-sm bg-navy border border-gold/30 flex items-center justify-center font-serif text-gold font-black text-2xl group-hover:border-gold group-hover:shadow-[0_0_20px_rgba(220,38,38,0.2)] transition-all duration-500">
-                    {step.id}
+                  <div className="w-16 h-16 rounded-xl bg-white border-2 border-navy-deep/10 flex items-center justify-center font-sans text-navy-deep font-black text-2xl group-hover:border-gold group-hover:-translate-y-2 transition-transform duration-500 shadow-sm relative overflow-hidden shadow-gold/5">
+                    <div className="absolute inset-0 bg-gold/5 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-xl"></div>
+                    <span className="relative z-10">{step.id}</span>
                   </div>
-                  <span className="text-cream/60 font-gothic font-bold text-[11px] uppercase tracking-[0.2em] group-hover:text-gold transition-colors">{step.label}</span>
+                  <span className="text-navy-deep/60 font-sans font-bold text-[11px] uppercase tracking-[0.2em] group-hover:text-gold transition-colors">{step.label}</span>
                 </div>
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
