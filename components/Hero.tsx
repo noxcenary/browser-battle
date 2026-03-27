@@ -36,7 +36,11 @@ const stats = [
   { value: "83rd", label: "NIRF 2022 Rank" }
 ];
 
-export default function Hero() {
+interface HeroProps {
+  onExploreClick?: () => void;
+}
+
+export default function Hero({ onExploreClick }: HeroProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [mounted, setMounted] = useState(false);
 
@@ -117,6 +121,7 @@ export default function Hero() {
                 <motion.button 
                   whileHover={{ scale: 1.05 }} 
                   whileTap={{ scale: 0.95 }}
+                  onClick={onExploreClick}
                   className="group bg-gold text-navy-deep px-10 py-5 rounded-full font-sans font-bold flex items-center space-x-3 transition-colors shadow-2xl animate-pulse-glow uppercase tracking-[0.15em] text-[12px] relative overflow-hidden"
                 >
                   <span className="relative z-10">Explore Programs</span>
@@ -173,7 +178,7 @@ export default function Hero() {
                        animate={{ opacity: 1, scale: 1, y: 0 }}
                        transition={{ delay: pos.delay, duration: 0.8, type: "spring" }}
                        className={`absolute glass-card p-6 flex flex-col items-center justify-center w-40 h-40 group hover:border-gold transition-colors duration-500 shadow-xl ${idx % 2 === 0 ? 'animate-float-slow' : 'animate-float-slower'}`}
-                       style={{ top: pos.top, left: pos.left }}
+                       style={{ top: pos.top, left: pos.left } as any}
                      >
                        <div className="text-4xl font-black text-navy-deep group-hover:text-gold transition-colors">{stat.value}</div>
                        <div className="text-[10px] font-bold text-navy-deep/60 mt-2 uppercase tracking-[0.15em] text-center leading-tight">{stat.label}</div>
