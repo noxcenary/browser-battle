@@ -96,6 +96,15 @@ Our goal is to create a digital home for BMSCE that reflects its status as one o
 
 ---
 
+## 🔮 Future Features/Refinements
+
+1. **Fix Broken Links**: Audit and repair any dead links across the institution's pages.
+2. **Improve Styling**: Fine-tune the "warming ivory" and professional layout for enhanced visual harmony.
+3. **Add Student/Faculty Portal**: Create a dedicated, secure entry point for internal college services.
+4. **Improve UI/UX**: Further refine the sticky scroll experience and mobile responsiveness.
+
+---
+
 ## 🤝 Contributing
 
 We welcome contributions! Please feel free to open issues or submit pull requests to help improve the BMSCE digital experience.

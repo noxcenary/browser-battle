@@ -122,10 +122,11 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, onClick }: BandPr
   }, [nodes]);
   const texture = useTexture('/images/lanyard.png');
   
-  const [curve] = useState(
-    () =>
-      new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
-  );
+  const [curve] = useState(() => {
+    const c = new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()]);
+    c.curveType = 'chordal';
+    return c;
+  });
   const [dragged, drag] = useState<false | THREE.Vector3>(false);
   const [hovered, hover] = useState(false);
 
@@ -178,9 +179,13 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, onClick }: BandPr
     }
   });
 
-  curve.curveType = 'chordal';
-  texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
-
+  useEffect(() => {
+    if (texture) {
+      // eslint-disable-next-line react-hooks/immutability
+      texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+      texture.needsUpdate = true;
+    }
+  }, [texture]);
   return (
     <>
       <group position={[0, 4, 0]}>
@@ -244,13 +249,13 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, onClick }: BandPr
                 <div className="w-[180px] h-[260px] bg-white/80 backdrop-blur-sm rounded-2xl flex flex-col items-center p-4 shadow-xl border border-white/40 overflow-hidden">
                   {/* Decorative Header */}
                   <div className="absolute top-0 left-0 w-full h-12 bg-navy-deep flex items-center justify-center">
-                    <img src="/images/logo.svg" alt="BMSCE" className="w-10 h-10 invert opacity-90" />
+                    <Image src="/images/logo.svg" alt="BMSCE" width={40} height={40} className="w-10 h-10 invert opacity-90" />
                   </div>
                   
                   {/* Content Area */}
                   <div className="mt-14 w-full flex flex-col items-center">
                     <div className="w-20 h-20 bg-gradient-to-br from-gold/20 to-gold/5 rounded-full flex items-center justify-center mb-4 border border-gold/10 relative overflow-hidden">
-                      <img src="/images/logo.svg" alt="BMSCE" className="w-12 h-12 opacity-10 grayscale absolute" />
+                      <Image src="/images/logo.svg" alt="BMSCE" width={48} height={48} className="w-12 h-12 opacity-10 grayscale absolute" />
                       <div className="w-12 h-12 rounded-full border-2 border-dashed border-gold/20 animate-spin-slow" />
                     </div>
 
@@ -286,7 +291,9 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false, onClick }: BandPr
         </RigidBody>
       </group>
       <mesh ref={band}>
+        {/* @ts-expect-error next-line typescript custom element */}
         <meshLineGeometry />
+        {/* @ts-expect-error next-line typescript custom element */}
         <meshLineMaterial
           color="#CCAA00"
           depthTest={false}

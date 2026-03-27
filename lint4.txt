@@ -1,0 +1,29 @@
+
+> bmsce-website@1.0.0 lint
+> eslint .
+
+
+C:\Users\shrih\Code\browser-battle\app\clubs\page.tsx
+  112:11  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+  194:27  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element  @next/next/no-img-element
+
+C:\Users\shrih\Code\browser-battle\components\Lanyard.tsx
+    1:1   warning  Unused eslint-disable directive (no problems were reported from 'react/no-unknown-property')
+  184:23  error    Error: This value cannot be modified
+
+Modifying a value returned from a hook is not allowed. Consider moving the modification into the hook where the value is constructed.
+
+C:\Users\shrih\Code\browser-battle\components\Lanyard.tsx:184:23
+  182 |   useEffect(() => {
+  183 |     if (texture) {
+> 184 |       texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+      |                       ^^^^^^^ `texture` cannot be modified
+  185 |       texture.needsUpdate = true;
+  186 |     }
+  187 |   }, [texture]);  react-hooks/immutability
+  251:21  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                       @next/next/no-img-element
+  257:23  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                       @next/next/no-img-element
+
+Γ£û 6 problems (1 error, 5 warnings)
+  0 errors and 1 warning potentially fixable with the `--fix` option.
+

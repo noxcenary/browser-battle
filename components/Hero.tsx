@@ -134,18 +134,11 @@ export default function Hero({ onExploreClick }: HeroProps) {
                   onClick={onExploreClick}
                   className="group bg-gold text-navy-deep px-10 py-5 rounded-full font-sans font-bold flex items-center space-x-3 transition-colors shadow-2xl animate-pulse-glow uppercase tracking-[0.15em] text-[12px] relative overflow-hidden"
                 >
-                  <Link href="/academics">
-                    <motion.button 
-                      whileHover={{ scale: 1.05 }} 
-                      whileTap={{ scale: 0.95 }}
-                      className="group bg-gold text-navy-deep px-10 py-5 rounded-full font-sans font-bold flex items-center space-x-3 transition-colors shadow-2xl animate-pulse-glow uppercase tracking-[0.15em] text-[12px] relative overflow-hidden"
-                    >
-                      <span className="relative z-10">Explore Programs</span>
-                      <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform relative z-10" />
-                      <div className="absolute inset-0 bg-white/30 scale-0 group-hover:scale-150 transition-transform duration-500 rounded-full blur-md"></div>
-                    </motion.button>
-                  </Link>
-                </motion.div>
+                  <span className="relative z-10">Explore Programs</span>
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform relative z-10" />
+                  <div className="absolute inset-0 bg-white/30 scale-0 group-hover:scale-150 transition-transform duration-500 rounded-full blur-md"></div>
+                </motion.button>
+              </motion.div>
             </motion.div>
           </AnimatePresence>
           

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
 import SpotlightCard from "@/components/SpotlightCard";
 
@@ -109,14 +110,12 @@ export default function ClubIntroPage() {
       <header className="absolute top-6 left-6 md:top-10 md:left-10 z-50 flex items-center gap-4 py-3 px-6 bg-black/20 backdrop-blur-xl border border-white/20 rounded-2xl shadow-2xl transition hover:bg-black/40">
         {/* Logo Container with graceful fallback */}
         <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center font-bold text-black border border-white/30 overflow-hidden shrink-0">
-          <img
+          <Image
             src="/images/logo.svg"
             alt="BMS Logo"
+            width={48}
+            height={48}
             className="w-full h-full object-cover p-1"
-            onError={(e) => {
-              e.currentTarget.style.display = 'none';
-              e.currentTarget.parentElement!.innerHTML = 'BMS';
-            }}
           />
         </div>
         <div className="flex flex-col">
@@ -191,9 +190,10 @@ export default function ClubIntroPage() {
                           exit={{ opacity: 0, y: -150, scale: 1.15, x: -150, rotateZ: -15 }}
                           transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
                         >
-                          <img
+                          <Image
                             src={src}
                             alt={`${club.name} image ${i + 1}`}
+                            fill
                             className="absolute inset-0 w-full h-full object-cover"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-white/10 pointer-events-none" />
